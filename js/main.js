@@ -204,6 +204,38 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 function writeupsInFolder(folderId) {
   return CONFIG.writeups.filter(w => w.folder === folderId);
 }
+
+/* ---------------- markdown renderer ---------------- */
+function renderMarkdown(markdown) {
+
+  if (!markdown) return '';
+
+  return markdown
+    // Code blocks
+    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+
+    // Headings
+    .replace(/^### (.*)$/gm, '<h5>$1</h5>')
+    .replace(/^## (.*)$/gm, '<h4>$1</h4>')
+    .replace(/^# (.*)$/gm, '<h3>$1</h3>')
+
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+
+    // Bullet points
+    .replace(/^- (.*)$/gm, '<li>$1</li>')
+
+    // Separate paragraphs
+    .replace(/\n\n/g, '</p><p>')
+
+    // Single line breaks
+    .replace(/\n/g, '<br>');
+}
+
+
 document.getElementById('folderColumns').innerHTML = CONFIG.writeupFolders.map((f, i) => {
   const count = writeupsInFolder(f.id).length;
   return `
@@ -219,32 +251,156 @@ document.getElementById('folderColumns').innerHTML = CONFIG.writeupFolders.map((
 }).join('');
 
 function openFolderModal(folder) {
+
   const items = writeupsInFolder(folder.id);
+
   modalPanel.classList.add('modal-wide');
+
+  /* Show the list of Field Notes */
+
   modalContent.innerHTML = `
-    <div class="m-eyebrow">${items.length} entr${items.length === 1 ? 'y' : 'ies'}</div>
+    <div class="m-eyebrow">
+      ${items.length} entr${items.length === 1 ? 'y' : 'ies'}
+    </div>
+
     <h3 id="modalTitle">${folder.label}</h3>
+
     <div class="folder-modal-list">
-      ${items.map(w => `
-        <a class="writeup-card" href="${w.link}" target="_blank" rel="noopener">
+
+      ${items.map((w, i) => `
+        <button
+          class="writeup-card"
+          type="button"
+          data-note-idx="${i}"
+        >
+
           <div class="writeup-head">
+
             <h3>${w.title}</h3>
-            <span class="writeup-date">${w.date}</span>
-          </div>
-          <p>${w.summary}</p>
-          <div class="writeup-foot">
-            <div class="proj-tags">${w.tags.map(t => `<span>${t}</span>`).join('')}</div>
-            <span class="proj-link">
-              Read write-up
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+
+            <span class="writeup-date">
+              ${w.date}
             </span>
+
           </div>
-        </a>
+
+          <p>
+            ${w.summary}
+          </p>
+
+          <div class="writeup-foot">
+
+            <div class="proj-tags">
+
+              ${w.tags
+                .map(t => `<span>${t}</span>`)
+                .join('')}
+
+            </div>
+
+            <span class="proj-link">
+
+              Read Field Note
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+
+            </span>
+
+          </div>
+
+        </button>
       `).join('')}
+
     </div>
   `;
+
+
+  /* ---------------- open individual Field Note ---------------- */
+
+  modalContent
+    .querySelectorAll('[data-note-idx]')
+    .forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        const note = items[
+          Number(button.dataset.noteIdx)
+        ];
+
+        if (!note) return;
+
+
+        /* Render the actual Field Note */
+
+        modalContent.innerHTML = `
+
+          <div class="m-eyebrow">
+            ${note.date}
+          </div>
+
+          <h3 id="modalTitle">
+            ${note.title}
+          </h3>
+
+          <div class="field-note-content">
+
+            ${renderMarkdown(note.content)}
+
+          </div>
+
+
+          ${note.tags && note.tags.length ? `
+
+            <div class="m-section">
+
+              <div class="proj-tags">
+
+                ${note.tags
+                  .map(t => `<span>${t}</span>`)
+                  .join('')}
+
+              </div>
+
+            </div>
+
+          ` : ''}
+
+
+          ${note.link && note.link !== '#' ? `
+
+            <div class="m-section">
+
+              <a
+                class="btn primary"
+                href="${note.link}"
+                target="_blank"
+                rel="noopener"
+              >
+                View on GitHub
+              </a>
+
+            </div>
+
+          ` : ''}
+
+        `;
+
+      });
+
+    });
+
+
   openModal();
+
 }
+
 document.getElementById('folderColumns').addEventListener('click', (e) => {
   const btn = e.target.closest('[data-folder-idx]');
   if (!btn) return;

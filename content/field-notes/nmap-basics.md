@@ -1,14 +1,10 @@
 ---
 title: "Nmap Basics"
 date: "Sep 2026"
-summary: "A dummy Field Note used to test the automated Field Notes pipeline."
+summary: "Notes on Nmap scanning, enumeration, and reconnaissance."
 tags:
   - Nmap
   - Networking
+  - Reconnaissance
+github: "https://github.com/Asad-Khan710/Nmap-Field-Notes"
 ---
-
-# Nmap Basics
-
-This is a temporary test Field Note.
-
-The purpose of this file is to verify that GitHub Actions can automatically discover Markdown notes and add them to the portfolio.

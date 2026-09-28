@@ -1108,3 +1108,142 @@ body[data-mode="redteam"]{
 .modal-panel.modal-wide{ max-width:680px; }
 .modal-panel .folder-modal-list{ display:flex; flex-direction:column; gap:14px; margin-top:18px; }
 .modal-panel .writeup-card{ padding:18px 20px; }
+
+
+/* ============================================================
+   FIELD NOTES
+   Cybersecurity report-style Markdown content
+   ============================================================ */
+
+.field-note-content {
+  margin-top: 28px;
+  line-height: 1.75;
+  font-size: 0.98rem;
+  color: var(--text, #d8d8d8);
+}
+
+/* Main heading inside a Field Note */
+.field-note-content h3 {
+  margin: 0 0 20px;
+  font-size: 1.45rem;
+  line-height: 1.3;
+  color: var(--text, #ffffff);
+}
+
+/* Section headings */
+.field-note-content h4 {
+  margin: 32px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text, #ffffff);
+}
+
+/* Smaller headings */
+.field-note-content h5 {
+  margin: 24px 0 10px;
+  font-size: 0.95rem;
+  color: var(--text, #ffffff);
+}
+
+/* Paragraphs */
+.field-note-content p {
+  margin: 0 0 18px;
+}
+
+/* Bold text */
+.field-note-content strong {
+  color: var(--text, #ffffff);
+  font-weight: 600;
+}
+
+/* Inline code */
+.field-note-content code {
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.88em;
+  color: #e6e6e6;
+}
+
+/* Code blocks */
+.field-note-content pre {
+  margin: 20px 0 24px;
+  padding: 18px 20px;
+
+  overflow-x: auto;
+
+  background: #0b0d10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid currentColor;
+  border-radius: 6px;
+
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Code inside code blocks */
+.field-note-content pre code {
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #d6d6d6;
+}
+
+/* Bullet points */
+.field-note-content li {
+  margin: 7px 0;
+  padding-left: 4px;
+}
+
+/* Add spacing before bullet lists */
+.field-note-content li:first-child {
+  margin-top: 10px;
+}
+
+/* Field Note tags */
+.field-note-content + .m-section {
+  margin-top: 32px;
+}
+
+/* GitHub button section */
+.field-note-content + .m-section + .m-section {
+  margin-top: 18px;
+}
+
+/* Make the Field Note easier to read on smaller screens */
+@media (max-width: 700px) {
+
+  .field-note-content {
+    margin-top: 22px;
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .field-note-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .field-note-content h4 {
+    font-size: 1rem;
+    margin-top: 26px;
+  }
+
+  .field-note-content pre {
+    padding: 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+}

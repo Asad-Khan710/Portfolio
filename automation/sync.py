@@ -101,7 +101,10 @@ def load_project(repo, portfolio_file):
     """Convert portfolio.yml into the format used by config.js."""
 
     encoded_content = portfolio_file["content"]
-    decoded_content = base64.b64decode(encoded_content).decode("utf-8")
+
+    decoded_content = base64.b64decode(
+        encoded_content
+    ).decode("utf-8")
 
     data = yaml.safe_load(decoded_content)
 
@@ -109,18 +112,45 @@ def load_project(repo, portfolio_file):
         return None
 
     project = {
-        "title": data.get("title", repo["name"]),
-        "difficulty": data.get("difficulty", "medium"),
-        "desc": data.get("description", repo.get("description") or ""),
-        "tags": data.get("tags", []),
+        "title": data.get(
+            "title",
+            repo["name"]
+        ),
 
-        # GitHub URL is automatically taken from the repository.
+        "difficulty": data.get(
+            "difficulty",
+            "medium"
+        ),
+
+        "desc": data.get(
+            "description",
+            repo.get("description") or ""
+        ),
+
+        "tags": data.get(
+            "tags",
+            []
+        ),
+
+        # GitHub URL is automatically taken from
+        # the project's repository.
         "link": repo["html_url"],
 
         "details": {
-            "approach": data.get("approach", ""),
-            "tools": data.get("tools", []),
-            "learnings": data.get("learnings", "")
+            "approach": data.get(
+                "approach",
+                ""
+            ),
+
+            "tools": data.get(
+                "tools",
+                []
+            ),
+
+            "learnings": data.get(
+                "learnings",
+                ""
+            )
         }
     }
 
@@ -134,8 +164,13 @@ def find_projects():
 
     projects = []
 
-    print(f"Repositories found: {len(repositories)}")
-    print("\nChecking repositories for portfolio.yml...\n")
+    print(
+        f"Repositories found: {len(repositories)}"
+    )
+
+    print(
+        "\nChecking repositories for portfolio.yml...\n"
+    )
 
     for repo in repositories:
 
@@ -143,16 +178,23 @@ def find_projects():
         if repo.get("fork"):
             continue
 
-        print(f"Checking: {repo['name']}")
+        print(
+            f"Checking: {repo['name']}"
+        )
 
         portfolio_file = get_portfolio_file(repo)
 
         if portfolio_file is None:
             continue
 
-        print("  -> portfolio.yml FOUND")
+        print(
+            "  -> portfolio.yml FOUND"
+        )
 
-        project = load_project(repo, portfolio_file)
+        project = load_project(
+            repo,
+            portfolio_file
+        )
 
         if project:
             projects.append(project)
@@ -176,6 +218,7 @@ def parse_front_matter(content):
     summary: "Example summary"
     tags:
       - Example
+    github: "https://github.com/Asad-Khan710/Example"
     ---
 
     Markdown content follows here.
@@ -197,55 +240,162 @@ def parse_front_matter(content):
     if end_index is None:
         return None
 
-    front_matter_text = "\n".join(lines[1:end_index])
+    front_matter_text = "\n".join(
+        lines[1:end_index]
+    )
 
-    data = yaml.safe_load(front_matter_text)
+    data = yaml.safe_load(
+        front_matter_text
+    )
 
     if not data:
         return None
 
-    return data
+    return data, end_index
 
 
 def load_field_note(note_file):
-    """Convert one Markdown Field Note into the format used by config.js."""
+    """
+    Convert one Markdown Field Note into the format used by config.js.
 
-    print(f"Checking Field Note: {note_file.name}")
+    The front matter is used for the Field Note metadata.
+
+    The Markdown body is stored as content so the portfolio
+    can render the Field Note directly inside the website.
+
+    An optional 'github' field can specify the Field Note's
+    actual GitHub repository.
+
+    Example:
+
+    github: "https://github.com/Asad-Khan710/Nmap-Field-Notes"
+
+    If no 'github' field is provided, the link falls back
+    to the Markdown file inside the Portfolio repository.
+    """
+
+    print(
+        f"Checking Field Note: {note_file.name}"
+    )
 
     try:
-        content = note_file.read_text(encoding="utf-8")
+        content = note_file.read_text(
+            encoding="utf-8"
+        )
 
     except Exception as error:
-        print(f"  -> Could not read file: {error}")
+
+        print(
+            f"  -> Could not read file: {error}"
+        )
+
         return None
 
-    data = parse_front_matter(content)
+    parsed = parse_front_matter(
+        content
+    )
 
-    if data is None:
-        print("  -> INVALID front matter")
+    if parsed is None:
+
+        print(
+            "  -> INVALID front matter"
+        )
+
         return None
 
-    title = data.get("title")
+    data, end_index = parsed
+
+    title = data.get(
+        "title"
+    )
 
     if not title:
-        print("  -> SKIPPED: missing title")
+
+        print(
+            "  -> SKIPPED: missing title"
+        )
+
         return None
+
+    # Remove the YAML front matter.
+    # Everything after the closing --- is
+    # the Markdown body.
+    markdown_content = "\n".join(
+        content.splitlines()[
+            end_index + 1:
+        ]
+    ).strip()
+
+    # --------------------------------------------------------
+    # GitHub link
+    # --------------------------------------------------------
+    #
+    # If the Field Note has a custom GitHub repository,
+    # use that repository.
+    #
+    # Example:
+    #
+    # github: "https://github.com/Asad-Khan710/Nmap-Field-Notes"
+    #
+    # If no custom repository is provided, use the old
+    # Portfolio Markdown file as a fallback.
+    # --------------------------------------------------------
+
+    github_link = data.get(
+        "github"
+    )
+
+    if not github_link:
+
+        github_link = (
+            f"https://github.com/"
+            f"{GITHUB_USERNAME}/"
+            f"Portfolio/blob/main/"
+            f"content/field-notes/"
+            f"{note_file.name}"
+        )
 
     note = {
         "folder": "notes",
-        "title": title,
-        "date": data.get("date", ""),
-        "summary": data.get("summary", ""),
-        "tags": data.get("tags", []),
 
-        # For now, the link points to the Markdown file
-        # inside the portfolio repository.
-        "link": f"https://github.com/{GITHUB_USERNAME}/"
-                f"Portfolio/blob/main/content/field-notes/"
-                f"{note_file.name}"
+        "title": title,
+
+        "date": data.get(
+            "date",
+            ""
+        ),
+
+        "summary": data.get(
+            "summary",
+            ""
+        ),
+
+        "tags": data.get(
+            "tags",
+            []
+        ),
+
+        # Store the actual Markdown content.
+        # main.js renders this inside the portfolio.
+        "content": markdown_content,
+
+        # GitHub repository or fallback Portfolio file.
+        "link": github_link
     }
 
-    print(f"  -> Field Note FOUND: {title}")
+    print(
+        f"  -> Field Note FOUND: {title}"
+    )
+
+    if data.get("github"):
+        print(
+            f"  -> GitHub repository: {github_link}"
+        )
+    else:
+        print(
+            "  -> GitHub repository: "
+            "Portfolio fallback"
+        )
 
     return note
 
@@ -256,14 +406,25 @@ def find_field_notes():
     field_notes = []
 
     if not FIELD_NOTES_DIR.exists():
-        print("\nField Notes directory does not exist.")
+
+        print(
+            "\nField Notes directory does not exist."
+        )
+
         return field_notes
 
-    print("\nChecking Field Notes...\n")
+    print(
+        "\nChecking Field Notes...\n"
+    )
 
-    markdown_files = sorted(FIELD_NOTES_DIR.glob("*.md"))
+    markdown_files = sorted(
+        FIELD_NOTES_DIR.glob("*.md")
+    )
 
-    print(f"Field Note files found: {len(markdown_files)}")
+    print(
+        f"Field Note files found: "
+        f"{len(markdown_files)}"
+    )
 
     for note_file in markdown_files:
 
@@ -271,10 +432,14 @@ def find_field_notes():
         if note_file.name == "TEMPLATE.md":
             continue
 
-        note = load_field_note(note_file)
+        note = load_field_note(
+            note_file
+        )
 
         if note:
-            field_notes.append(note)
+            field_notes.append(
+                note
+            )
 
     return field_notes
 
@@ -286,8 +451,15 @@ def find_field_notes():
 def load_profile():
     """Load global portfolio information."""
 
-    with open(PROFILE_FILE, "r", encoding="utf-8") as file:
-        return json.load(file)
+    with open(
+        PROFILE_FILE,
+        "r",
+        encoding="utf-8"
+    ) as file:
+
+        return json.load(
+            file
+        )
 
 
 # ============================================================
@@ -304,7 +476,11 @@ def javascript_value(value):
     )
 
 
-def generate_config(profile, projects, field_notes):
+def generate_config(
+    profile,
+    projects,
+    field_notes
+):
 
     config = profile.copy()
 
@@ -312,11 +488,17 @@ def generate_config(profile, projects, field_notes):
     # projects discovered from GitHub.
     config["projects"] = projects
 
-    # Combine any manually defined write-ups from profile.json
-    # with automatically discovered Field Notes.
-    existing_writeups = profile.get("writeups", [])
+    # Combine any manually defined write-ups from
+    # profile.json with automatically discovered Field Notes.
+    existing_writeups = profile.get(
+        "writeups",
+        []
+    )
 
-    config["writeups"] = existing_writeups + field_notes
+    config["writeups"] = (
+        existing_writeups
+        + field_notes
+    )
 
     javascript = (
         "/* ============================================================\n"
@@ -335,8 +517,15 @@ def generate_config(profile, projects, field_notes):
         + ";\n"
     )
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
-        file.write(javascript)
+    with open(
+        OUTPUT_FILE,
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        file.write(
+            javascript
+        )
 
 
 # ============================================================
@@ -345,27 +534,48 @@ def generate_config(profile, projects, field_notes):
 
 def main():
 
-    print("====================================")
-    print("      PORTFOLIO SYNC")
-    print("====================================")
+    print(
+        "===================================="
+    )
 
-    print("\nLoading profile...")
+    print(
+        "      PORTFOLIO SYNC"
+    )
+
+    print(
+        "===================================="
+    )
+
+    print(
+        "\nLoading profile..."
+    )
 
     profile = load_profile()
 
-    print("\nSearching GitHub for projects...")
+    print(
+        "\nSearching GitHub for projects..."
+    )
 
     projects = find_projects()
 
-    print(f"\nProjects found: {len(projects)}")
+    print(
+        f"\nProjects found: {len(projects)}"
+    )
 
-    print("\nSearching for Field Notes...")
+    print(
+        "\nSearching for Field Notes..."
+    )
 
     field_notes = find_field_notes()
 
-    print(f"\nField Notes found: {len(field_notes)}")
+    print(
+        f"\nField Notes found: "
+        f"{len(field_notes)}"
+    )
 
-    print("\nGenerating config.js...")
+    print(
+        "\nGenerating config.js..."
+    )
 
     generate_config(
         profile,
@@ -373,8 +583,13 @@ def main():
         field_notes
     )
 
-    print("\nDone.")
-    print(f"Updated: {OUTPUT_FILE}")
+    print(
+        "\nDone."
+    )
+
+    print(
+        f"Updated: {OUTPUT_FILE}"
+    )
 
 
 if __name__ == "__main__":

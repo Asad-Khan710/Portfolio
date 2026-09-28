@@ -134,6 +134,7 @@ const CONFIG = {
         "Nmap",
         "Networking"
       ],
+      "content": "# Nmap Basics\n\nThis is a temporary test Field Note.\n\nThe purpose of this file is to verify that GitHub Actions can automatically discover Markdown notes and add them to the portfolio.",
       "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/nmap-basics.md"
     },
     {
@@ -145,6 +146,7 @@ const CONFIG = {
         "Wireshark",
         "Networking"
       ],
+      "content": "# Wireshark Basics\n\nThis is another temporary test Field Note.\n\nThe purpose is to verify that multiple Markdown files are detected and displayed correctly.",
       "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/wireshark-basics.md"
     }
   ],
