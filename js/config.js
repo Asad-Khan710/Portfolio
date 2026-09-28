@@ -151,7 +151,20 @@ const CONFIG = {
       "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/wireshark-basics.md"
     }
   ],
-  "experience": [],
+  "experience": [
+    {
+      "title": "Information Technology Intern",
+      "org": "Burjeel Hospital",
+      "when": "Jun 2024 – Aug 2024",
+      "desc": "Supported IT operations and employee onboarding by managing Active Directory accounts and attributes, ensuring unique employee IDs and email accounts, and maintaining accurate user information. Created an audit sheet and removed redundant data to improve data quality and system efficiency.",
+      "tags": [
+        "Active Directory",
+        "User Management",
+        "IT Operations",
+        "Data Auditing"
+      ]
+    }
+  ],
   "education": [
     {
       "title": "Bachelor of Computer Science",

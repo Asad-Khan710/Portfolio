@@ -1127,7 +1127,11 @@ body[data-mode="redteam"]{
   margin: 0 0 20px;
   font-size: 1.45rem;
   line-height: 1.3;
-  color: var(--text, #ffffff);
+  color: var(--text);
+}
+
+[data-mode="light"] .field-note-content h3 {
+  color: #201c14;
 }
 
 /* Section headings */
@@ -1221,6 +1225,98 @@ body[data-mode="redteam"]{
 .field-note-content + .m-section + .m-section {
   margin-top: 18px;
 }
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+
+#expList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#expList .timeline-entry {
+  position: relative;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+#expList .timeline-entry:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px -14px var(--accent-glow);
+}
+
+#expList .timeline-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#expList .timeline-head h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+
+#expList .timeline-head .org {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+#expList .timeline-head .when {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--date-color);
+  white-space: nowrap;
+}
+
+#expList .timeline-entry p {
+  max-width: 720px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Analyst mode */
+
+[data-mode="analyst"] #expList .timeline-entry {
+  border-left: 2px solid var(--accent);
+}
+
+/* Red Team mode */
+
+[data-mode="redteam"] #expList .timeline-entry {
+  border-radius: 0;
+  border-left: 2px solid var(--accent);
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  #expList .timeline-entry {
+    padding: 20px;
+  }
+
+  #expList .timeline-head {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
 
 /* Make the Field Note easier to read on smaller screens */
 @media (max-width: 700px) {
@@ -1246,4 +1342,14 @@ body[data-mode="redteam"]{
     margin-right: -4px;
   }
 
+}
+/* Field Note card titles */
+
+[data-mode="analyst"] .writeup-card h3,
+[data-mode="redteam"] .writeup-card h3 {
+  color: #ffffff;
+}
+
+[data-mode="light"] .writeup-card h3 {
+  color: #201c14;
 }
