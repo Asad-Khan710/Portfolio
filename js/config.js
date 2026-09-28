@@ -129,13 +129,14 @@ const CONFIG = {
       "folder": "notes",
       "title": "Nmap Basics",
       "date": "Sep 2026",
-      "summary": "A dummy Field Note used to test the automated Field Notes pipeline.",
+      "summary": "Notes on Nmap scanning, enumeration, and reconnaissance.",
       "tags": [
         "Nmap",
-        "Networking"
+        "Networking",
+        "Reconnaissance"
       ],
-      "content": "# Nmap Basics\n\nThis is a temporary test Field Note.\n\nThe purpose of this file is to verify that GitHub Actions can automatically discover Markdown notes and add them to the portfolio.",
-      "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/nmap-basics.md"
+      "content": "",
+      "link": "https://github.com/Asad-Khan710/Nmap-Field-Notes"
     },
     {
       "folder": "notes",
