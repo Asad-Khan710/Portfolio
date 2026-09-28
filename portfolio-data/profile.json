@@ -1,0 +1,134 @@
+{
+  "name": "Muhammad Asad Khan",
+  "role": "Aspiring SOC / Security Analyst",
+  "description": "Building hands-on cybersecurity, networking, and IT skills through practical projects and security training.",
+  "availability": "Open to internships & entry-level SOC/analyst roles",
+
+  "socials": {
+    "github": "https://github.com/Asad-Khan710",
+    "linkedin": "",
+    "tryhackme": "",
+    "email": ""
+  },
+
+  "resumeUrl": "",
+
+  "stats": [
+    {
+      "num": "3",
+      "label": "CompTIA Certs"
+    },
+    {
+      "num": "0",
+      "label": "Projects"
+    },
+    {
+      "num": "BCS",
+      "label": "Computer Science"
+    }
+  ],
+
+  "certs": [
+    {
+      "name": "CompTIA A+",
+      "status": "earned",
+      "date": "Earned",
+      "icon": "A+",
+      "desc": "Core hardware, operating systems, troubleshooting, and IT support fundamentals.",
+      "link": ""
+    },
+    {
+      "name": "CompTIA Network+",
+      "status": "earned",
+      "date": "Earned",
+      "icon": "N+",
+      "desc": "Networking infrastructure, protocols, troubleshooting, and operations.",
+      "link": ""
+    },
+    {
+      "name": "CompTIA Security+",
+      "status": "earned",
+      "date": "Earned",
+      "icon": "S+",
+      "desc": "Core cybersecurity concepts, risk management, threats, vulnerabilities, and security operations.",
+      "link": ""
+    }
+  ],
+
+  "skills": [
+    {
+      "group": "Networking",
+      "items": [
+        "TCP/IP",
+        "Subnetting",
+        "DNS/DHCP",
+        "VLANs",
+        "Wireshark"
+      ]
+    },
+    {
+      "group": "Security",
+      "items": [
+        "Security Fundamentals",
+        "Log Analysis",
+        "Threat Detection",
+        "Incident Response"
+      ]
+    },
+    {
+      "group": "Offensive Security",
+      "items": [
+        "Nmap",
+        "Burp Suite",
+        "Metasploit",
+        "Enumeration"
+      ]
+    },
+    {
+      "group": "Systems",
+      "items": [
+        "Linux",
+        "Windows",
+        "Active Directory",
+        "Bash"
+      ]
+    },
+    {
+      "group": "Programming",
+      "items": [
+        "Python",
+        "Java",
+        "JavaScript",
+        "HTML/CSS"
+      ]
+    }
+  ],
+
+  "writeupFolders": [
+    {
+      "id": "tryhackme",
+      "label": "TryHackMe Write-Ups",
+      "icon": "TH",
+      "desc": "Room walkthroughs & methodology"
+    },
+    {
+      "id": "notes",
+      "label": "Field Notes",
+      "icon": "FN",
+      "desc": "Personal notes & checklists"
+    }
+  ],
+
+  "writeups": [],
+
+  "experience": [],
+
+  "education": [
+    {
+      "title": "Bachelor of Computer Science",
+      "org": "Dalhousie University",
+      "when": "Expected 2026",
+      "desc": "Computer Science degree with interests in cybersecurity, networking, and IT systems."
+    }
+  ]
+}
