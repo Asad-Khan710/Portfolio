@@ -230,6 +230,61 @@ def check_projects():
 
     return valid
 
+# ============================================================
+# FIELD NOTES CHECK
+# ============================================================
+
+def check_field_notes():
+
+    print("\nChecking Field Notes...")
+
+    config = load_config()
+
+    if config is None:
+        return False
+
+    writeups = config.get("writeups", [])
+
+    field_notes = [
+        writeup
+        for writeup in writeups
+        if writeup.get("folder") == "notes"
+    ]
+
+    print(f"Field Notes found in generated config: {len(field_notes)}")
+
+    valid = True
+
+    for note in field_notes:
+
+        title = note.get("title", "")
+
+        if not title:
+            print("[FAIL] Field Note is missing a title.")
+            valid = False
+            continue
+
+        print(f"[PASS] Field Note: {title}")
+
+        required_fields = [
+            "folder",
+            "date",
+            "summary",
+            "tags",
+            "link"
+        ]
+
+        for field in required_fields:
+
+            if field not in note:
+                print(
+                    f"[FAIL] {title} is missing field: {field}"
+                )
+                valid = False
+
+    return valid
+
+
 
 # ============================================================
 # MAIN
@@ -266,6 +321,9 @@ def main():
             valid = False
 
         if not check_projects():
+            valid = False
+
+        if not check_field_notes():
             valid = False
 
     print("\n====================================")

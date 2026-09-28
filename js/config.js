@@ -5,6 +5,7 @@
    Edit:
    - portfolio-data/profile.json
    - project repositories' portfolio.yml files
+   - content/field-notes/*.md
 
    README.md files are NEVER modified by this automation.
    ============================================================ */
@@ -123,7 +124,30 @@ const CONFIG = {
       "desc": "Personal notes & checklists"
     }
   ],
-  "writeups": [],
+  "writeups": [
+    {
+      "folder": "notes",
+      "title": "Nmap Basics",
+      "date": "Sep 2026",
+      "summary": "A dummy Field Note used to test the automated Field Notes pipeline.",
+      "tags": [
+        "Nmap",
+        "Networking"
+      ],
+      "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/nmap-basics.md"
+    },
+    {
+      "folder": "notes",
+      "title": "Wireshark Basics",
+      "date": "Sep 2026",
+      "summary": "A second dummy Field Note used to test multiple entries in the automated pipeline.",
+      "tags": [
+        "Wireshark",
+        "Networking"
+      ],
+      "link": "https://github.com/Asad-Khan710/Portfolio/blob/main/content/field-notes/wireshark-basics.md"
+    }
+  ],
   "experience": [],
   "education": [
     {
