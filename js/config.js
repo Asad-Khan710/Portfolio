@@ -151,6 +151,25 @@ const CONFIG = {
         ],
         "learnings": "Learned how to work with authentication events, dictionaries, lists, thresholds, and basic detection logic to identify potentially suspicious login activity.\n"
       }
+    },
+    {
+      "title": "Network Reconnaissance Tool",
+      "difficulty": "easy",
+      "desc": "Python-based tool for performing basic network reconnaissance and collecting information about hosts and services.\n",
+      "tags": [
+        "Python",
+        "Networking",
+        "Reconnaissance"
+      ],
+      "link": "https://github.com/Asad-Khan710/Network-Reconnaissance-Tool",
+      "details": {
+        "approach": "Built a Python tool to perform basic reconnaissance and organize information gathered from network targets.\n",
+        "tools": [
+          "Python",
+          "Networking"
+        ],
+        "learnings": "Learned more about network reconnaissance, Python programming, and how security tools can be used to collect and organize information about networked systems.\n"
+      }
     }
   ]
 };
