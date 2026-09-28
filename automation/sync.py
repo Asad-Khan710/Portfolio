@@ -267,6 +267,10 @@ def find_field_notes():
 
     for note_file in markdown_files:
 
+        # Ignore the reusable template.
+        if note_file.name == "TEMPLATE.md":
+            continue
+
         note = load_field_note(note_file)
 
         if note:
