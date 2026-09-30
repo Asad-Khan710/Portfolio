@@ -5,9 +5,9 @@ date: "Sep 2026"
 summary: "A short description of what this Field Note covers."
 tags:
 
-* Tool
-* Topic
-* Skill
+- Tool
+- Topic
+- Skill
 
 ---
 

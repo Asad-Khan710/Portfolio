@@ -89,7 +89,6 @@ function renderProjectCard(p, i) {
     <div class="proj-card reveal">
       <div class="proj-top">
         <h3>${p.title}</h3>
-        <span class="proj-diff ${p.difficulty}">${p.difficulty}</span>
       </div>
       <p>${p.desc}</p>
       <div class="proj-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
@@ -146,7 +145,7 @@ function openProjectModal(p) {
   const d = p.details || {};
   modalPanel.classList.remove('modal-wide');
   modalContent.innerHTML = `
-    <div class="m-eyebrow">${p.difficulty ? p.difficulty.toUpperCase() + ' · ' : ''}${p.tags.join(' · ')}</div>
+    <div class="m-eyebrow">${p.tags.join(' · ')}</div>
     <h3 id="modalTitle">${p.title}</h3>
     <div class="m-section">
       <h4>Overview</h4>

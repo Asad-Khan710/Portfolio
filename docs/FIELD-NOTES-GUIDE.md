@@ -4,7 +4,7 @@ Field Notes are Markdown files stored in:
 
 `content/field-notes/`
 
-GitHub Actions automatically detects these files and adds them to the portfolio.
+The portfolio automation automatically detects these files and adds them to the portfolio.
 
 ## Creating a New Field Note
 
@@ -15,7 +15,7 @@ GitHub Actions automatically detects these files and adds them to the portfolio.
 5. Save the file.
 6. Commit and push to GitHub.
 
-Do **not** manually edit `js/config.js`.
+**Do not manually edit `js/config.js`.**
 
 `config.js` is generated automatically.
 
@@ -88,7 +88,7 @@ tags:
 
 ## Suggested Tags
 
-Use existing tags when they fit instead of constantly inventing new variations.
+Use existing tags when they fit instead of constantly creating new variations.
 
 ### Networking
 
@@ -141,7 +141,7 @@ Example:
 ````markdown
 # Nmap Service Enumeration
 
-## What I learned
+## What I Learned
 
 Nmap can be used to identify open ports and services
 running on a target.
@@ -183,8 +183,24 @@ Use headings, lists, code blocks, and short explanations to make the notes easy 
 - Edit `js/config.js` manually.
 - Remove the `---` lines around front matter.
 - Change `folder` manually.
-- Add unnecessary fields unless the automation is updated to support them.
+- Add unnecessary front matter fields unless the automation is updated to support them.
 - Put unrelated topics into the tags.
+- Use `*` for YAML tag lists. Use `-`.
+
+---
+
+## Markdown Formatting
+
+Field Notes currently support common Markdown formatting such as:
+
+- Headings
+- Bold text
+- Inline code
+- Bullet lists
+- Fenced code blocks
+- Paragraphs
+
+For the cleanest display, avoid complex Markdown such as tables, nested lists, and other formatting that may not be supported by the portfolio renderer.
 
 ---
 
