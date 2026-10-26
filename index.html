@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asad Khan | Cybersecurity and SOC Analyst Portfolio</title>
+<meta name="description" content="Portfolio of Muhammad Asad Khan: CompTIA Security+, Network+ and A+, SOC lab, detection rules and Python security tools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i><span id="brand"></span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+      <button class="btn icon-btn" id="theme" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="kicker" id="kicker"></div>
+        <h1 id="name"></h1>
+        <p class="role" id="role"></p>
+        <p class="sum" id="summary"></p>
+        <div class="cta" id="cta"></div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+      <aside class="idcard" id="idcard" aria-label="Card resume"></aside>
+    </div>
+  </section>
+
+  <section class="sec" id="projects"><div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" id="projEyebrow"></div><h2>Projects</h2></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects by tag"></div>
+    </div>
+    <div class="grid" id="projGrid"></div>
+  </div></section>
+
+  <section class="sec" id="skills"><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Tools I use</div><h2>Skills</h2></div></div>
+    <div class="skills" id="skillGrid"></div>
+  </div></section>
+
+  <section class="sec" id="experience"><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Work history</div><h2>Experience</h2></div></div>
+    <div id="jobs"></div>
+  </div></section>
+
+  <section class="sec" id="certs"><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow" id="certEyebrow"></div><h2>Certifications</h2></div></div>
+    <div class="certs" id="certGrid"></div>
+    <div class="edu" id="edu"></div>
+  </div></section>
+
+  <section class="sec" id="contact"><div class="wrap">
+    <div class="contact">
+      <div><h2 id="contactTitle"></h2><p id="contactText"></p></div>
+      <div class="reach" id="reach"></div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="wrap foot"><span id="footL"></span><span id="footR"></span></footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
