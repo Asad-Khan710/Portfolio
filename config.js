@@ -128,9 +128,9 @@ const DATA = {
     }
   ],
   certs: [   // paste each credential's verification link into `verify` to turn on its Verify button
-    { name: "Security+", issuer: "CompTIA", verify: "" },
-    { name: "Network+", issuer: "CompTIA", verify: "" },
-    { name: "A+", issuer: "CompTIA", verify: "" }
+    { name: "Security+", issuer: "CompTIA", verify: "https://cp.certmetrics.com/comptia/en/public/verify/credential/e94a8566e08a41c9bf1e1c25c3ee4421" },
+    { name: "Network+", issuer: "CompTIA", verify: "https://cp.certmetrics.com/comptia/en/public/verify/credential/eb1b8f1f397f47aea5ad27963538f15b" },
+    { name: "A+", issuer: "CompTIA", verify: "https://cp.certmetrics.com/comptia/en/public/verify/credential/KQDS9D759B1QYR0J" }
   ],
   contact: { title: "Let's talk", text: "If you are hiring for a SOC, security or IT support role, email is the fastest way to reach me." }
 };
