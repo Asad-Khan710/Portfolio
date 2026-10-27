@@ -14,17 +14,17 @@ const DATA = {
     short: "asad.khan",
     name: "Muhammad Asad Khan",
     role: "Cybersecurity | SOC Analyst | IT Support",
-    summary: "Computer Science student at Dalhousie University with CompTIA Security+, Network+ and A+. I build small labs, detection rules and Python tools so I can practise investigating what shows up in the logs.",
+    summary: "Computer Science student at Dalhousie University with CompTIA Security+, Network+ and A+. I build small labs, detection rules and Python tools so I can practice investigating what shows up in the logs.",
     status: "Open to SOC analyst, cybersecurity and IT support roles",
     email: "asadkhan10c@gmail.com",
     phone: "+1 902-402-3126",
     cardTitle: "At a glance", cardSub: "CompTIA certified \u00b7 Class of 2026",
     resume: "",     // optional: link to your resume PDF
     socials: [      // paste each profile URL; entries with no URL show as dashed placeholders
-      { type: "github", label: "GitHub", url: "" },
-      { type: "linkedin", label: "LinkedIn", url: "" },
-      { type: "medium", label: "Writeups", url: "" },
-      { type: "tryhackme", label: "TryHackMe", url: "" }
+      { type: "github", label: "GitHub", url: "https://github.com/Asad-Khan710" },
+      { type: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/asad-khan-ak710/" },
+      { type: "medium", label: "Writeups (coming soon)", url: "" },
+      { type: "tryhackme", label: "TryHackMe (coming soon)", url: "" }
     ]
   },
   education: { short: "BSc Computer Science", degree: "Bachelor of Computer Science", school: "Dalhousie University", when: "Expected Dec 2026" },
@@ -83,7 +83,7 @@ const DATA = {
         "Validates timestamps and malformed log entries before analysis.",
         "Per-IP time-window analysis separates bursts of failed logins from isolated authentication errors."
       ],
-      links: { github: "", medium: "", tryhackme: "", demo: "" }
+      links: { github: "https://github.com/Asad-Khan710/Failed-Login-Detector", medium: "", tryhackme: "", demo: "" }
     },
     {
       title: "Network Reconnaissance Tool",
