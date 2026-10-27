@@ -19,7 +19,7 @@ const DATA = {
     email: "asadkhan10c@gmail.com",
     phone: "+1 902-402-3126",
     cardTitle: "At a glance", cardSub: "CompTIA certified \u00b7 Class of 2026",
-    resume: "",     // optional: link to your resume PDF
+    resume: "assets/Asad_Khan_Resume.pdf",     // optional: link to your resume PDF
     socials: [      // paste each profile URL; entries with no URL show as dashed placeholders
       { type: "github", label: "GitHub", url: "https://github.com/Asad-Khan710" },
       { type: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/asad-khan-ak710/" },
