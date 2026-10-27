@@ -27,7 +27,7 @@ const DATA = {
       { type: "tryhackme", label: "TryHackMe", url: "" }
     ]
   },
-  education: { degree: "Bachelor of Computer Science", school: "Dalhousie University", when: "Expected Dec 2026" },
+  education: { short: "BSc Computer Science", degree: "Bachelor of Computer Science", school: "Dalhousie University", when: "Expected Dec 2026" },
   projects: [
     {
       title: "Home SOC Lab",

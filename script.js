@@ -138,7 +138,10 @@ $("idcard").innerHTML = `
   <div class="id-roles">${P.role.split("|").map((r) => `<span class="tag">${esc(r.trim())}</span>`).join("")}</div>
   <div class="id-sec"><div class="id-label">Certifications</div>
     <div class="cert-pills">${DATA.certs.map((c) => `<div class="cert-pill"><b>${esc(c.name)}</b><i>${esc(c.issuer)}</i>${verifyBtn(c)}</div>`).join("")}</div></div>
-  <div class="id-sec id-edu"><div class="id-label">Education</div><b>${esc(DATA.education.degree)}</b><span>${esc(DATA.education.school)} · ${esc(DATA.education.when)}</span></div>
+  <div class="id-sec id-two">
+    <div class="id-col"><div class="id-label">Education</div><b>${esc(DATA.education.short || DATA.education.degree)}</b><span>${esc(DATA.education.school)} · ${esc(DATA.education.when)}</span></div>
+    <div class="id-col"><div class="id-label">Experience</div><b>${esc(DATA.experience[0].role)}</b><span>${esc(DATA.experience[0].org)} · ${esc(DATA.experience[0].when)}</span></div>
+  </div>
   <div class="id-sec"><div class="id-label">Find me on</div>
     <div class="socs">${P.socials.map((x) => {
       const k = ICON[x.type] || { b: "var(--ink)", f: "var(--bg)", svg: "" };
